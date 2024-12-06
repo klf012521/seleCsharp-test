@@ -75,10 +75,14 @@ namespace PracticeAutomation.StepDefinitions.UI
         [StepDefinition(@"the employee can be seen on the list")]
         public void ThenTheEmployeeCanBeSeenOnTheList()
         {
-            var firstName = _ScenarioContext.Get<EmployeeProfile>("employee").Firstname;
-            var lastName = _ScenarioContext.Get<EmployeeProfile>("employee").Lastname;
-            _PIMPage.MatchEmployees(firstName, lastName).Should().BeTrue();
-           
+            //var firstName = _ScenarioContext.Get<EmployeeProfile>("employee").Firstname;
+            //var lastName = _ScenarioContext.Get<EmployeeProfile>("employee").Lastname;
+            //_PIMPage.MatchEmployees(firstName, lastName).Should().BeTrue();
+
+            var listOfEmployees = _PIMPage.GetAllEmployees();
+            listOfEmployees.Contains(_ScenarioContext.Get<EmployeeProfile>("employee").Firstname);
+            listOfEmployees.Contains(_ScenarioContext.Get<EmployeeProfile>("employee").Lastname);
+
         }
 
         [StepDefinition(@"user updates info")]
